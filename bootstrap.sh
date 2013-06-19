@@ -1,6 +1,9 @@
 #!/bin/bash
 
-${osm_pwd:?"Need to set osm_pwd"}
+# Do everything as root (preserve env vars via -E)
+sudo -E su
+
+if [ -z $OSM_PWD ]; then echo "Need to set OSM_PWD"; fi
 
 # update apt repo
 apt-get update
@@ -16,7 +19,7 @@ rm tmp.sudoers
 # add osm user (change pwd as needed)
 if ! id -u osm > /dev/null
 then
-    useradd -p $(perl -e'print crypt("'$osm_pwd'", "aa")') -s "/bin/bash" -U -m -G sudo osm
+    useradd -p $(perl -e'print crypt("'$OSM_PWD'", "aa")') -s "/bin/bash" -U -m -G sudo osm
 fi
 
 # update locale

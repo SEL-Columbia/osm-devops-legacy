@@ -16,7 +16,7 @@ development:
   adapter: postgresql
   database: osm_dev
   username: osm
-  password: "$osm_pwd"
+  password: "$OSM_PWD"
   host: localhost
   encoding: utf8
   template: template0
@@ -28,7 +28,7 @@ test:
   adapter: postgresql
   database: osm_test
   username: osm
-  password: "$osm_pwd"
+  password: "$OSM_PWD"
   host: localhost
   encoding: utf8
   template: template0
@@ -37,7 +37,7 @@ production:
   adapter: postgresql
   database: osm
   username: osm
-  password: "$osm_pwd"
+  password: "$OSM_PWD"
   host: localhost
   encoding: utf8
   template: template0

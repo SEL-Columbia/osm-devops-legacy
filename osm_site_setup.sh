@@ -4,7 +4,7 @@
 # Get the openstreetmap website
 if [ ! -d /home/osm/openstreetmap-website ]
 then
-  git clone https://github.com/modilabs/openstreetmap-website.git
+  git clone git@github.com:modilabs/openstreetmap-website.git
 fi
 
 # Make the libpgosm shared object lib
