@@ -1,6 +1,9 @@
 #!/bin/bash
 
-cat - > update_seqs.sql << EOF
+# start postgres
+service postgresql start
+
+cat - > /tmp/update_seqs.sql << EOF
 select setval('acls_id_seq', (select max(id) from acls)); 
 select setval('changesets_id_seq', (select max(id) from changesets)); 
 select setval('client_applications_id_seq', (select max(id) from client_applications)); 
@@ -23,6 +26,14 @@ select setval('user_tokens_id_seq', (select max(id) from user_tokens));
 select setval('users_id_seq', (select max(id) from users));
 EOF
 
-psql osm_dev -f update_seqs.sql
-psql osm -f update_seqs.sql
+timeout_seconds=20
+while ( ! sudo -u postgres psql -d osm -c "\l" )
+do
+  [[ $timeout_seconds > 0 ]] || { echo "failed to connect to postgres" >&2; exit 1; } 
+  timeout_seconds=$((timeout_seconds-1))
+  sleep 1
+done
 
+
+sudo -u postgres psql osm_dev -f /tmp/update_seqs.sql
+sudo -u postgres psql osm -f /tmp/update_seqs.sql
