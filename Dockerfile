@@ -5,7 +5,7 @@
 # The result of the build will be an image that when run can 
 # serve as an openstreetmap-website dev/test/production environment
 FROM ubuntu:14.04
-MAINTAINER Chris Natali <chris.natali@gmail.com>
+MAINTAINER Chris Natali
 
 
 # You can modify this users attributes later to suit your needs
