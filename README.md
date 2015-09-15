@@ -8,7 +8,7 @@ development and as a guide to deployment.
 Assuming you have [Docker](docker.com) (or boot2docker) installed and started, you can start
 a server via the following steps:
 
-1.  Pull the osm-website image from [dockerhub](hub.docker.com):
+1.  Pull the osm-website image from [dockerhub](https://hub.docker.com):
 
     ```
     sudo docker pull cjon/osm-website

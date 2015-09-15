@@ -5,8 +5,11 @@
 if [ ! -d /home/osm/openstreetmap-website ]
 then
   cd /home/osm
-  curl --location https://github.com/SEL-Columbia/openstreetmap-website/archive/master.tar.gz | tar xz
-  mv openstreetmap-website-master openstreetmap-website
+  git clone https://github.com/SEL-Columbia/openstreetmap-website.git
+  cd openstreetmap-website
+  git checkout gridmaps-bare
+  # curl --location https://github.com/SEL-Columbia/openstreetmap-website/archive/master.tar.gz | tar xz
+  # mv openstreetmap-website-master openstreetmap-website
 fi
 
 # Make the libpgosm shared object lib
