@@ -11,13 +11,13 @@ a server via the following steps:
 1.  Pull the osm-website image from [dockerhub](https://hub.docker.com):
 
     ```
-    sudo docker pull cjon/osm-website
+    docker pull cjon/osm-website
     ```
 
 2.  Start the container, exposing port 3000 and dropping into a bash shell:
 
     ```
-    sudo docker run -ti -p 3000:3000 cjon/osm-website /bin/bash
+    docker run -ti -p 3000:3000 cjon/osm-website /bin/bash
     ```
 
 3.  Start postgres, switch to osm user and start rails:
@@ -37,6 +37,37 @@ Remember, docker containers are "stateless", so any changes made during
 your session will be lost.  You can extend the image with your own 
 customizations via the `docker commit` command.  See the 
 [docker docs](https://docs.docker.com) for more.  
+
+### Dev environment setup (via Docker)
+
+A development environment can leverage the image created above (for the libraries, database, etc), yet run the source from a host mounted dir.  This is a useful way to isolate your host environment from all that openstreetmap depends on.  
+
+From your openstreetmap-website source directory, run the following (assumes you have the cjon/osm-website image on your host, replace as appropriate):
+
+```
+docker run -it --rm -p 3000:3000 -v "$(pwd):/osm-src" -u $UID --name osm-dev cjon/osm-website /bin/bash
+```
+
+This will run the osm-website image with your host openstreetmap-website source mounted in the /osm-src dir in the container and port 3000 exposed to the host.  The UID of the user should match yours on your host.  It will also drop you into a bash shell.  
+
+In the container's bash shell, run the following to startup your dev site:
+```
+cd osm-src
+service postgresql start
+rake db:migrate RAILS_ENV=development
+rails s -b 0.0.0.0
+```
+
+You should now be able to open up http://127.0.0.1:3000 in your hosts browser and test out the dev site.  
+
+It may be useful to create an osm user with administrator permissions.  To do so, follow [instructions here](https://github.com/SEL-Columbia/openstreetmap-website/blob/master/CONFIGURE.md#managing-users)
+
+Your database will be reset on each start of your docker container, but you can commit a new container that retains the database changes via the following:
+
+```
+docker commit osm-dev osm-website:dev
+```
+
 
 ### VM or Dev machine setup
 

@@ -35,7 +35,3 @@ USER root
 ADD osm_post_site_setup.sh /tmp/
 USER osm
 RUN bash /tmp/osm_post_site_setup.sh
-
-USER root
-ADD osm_update_sequences.sh /tmp/
-RUN bash /tmp/osm_update_sequences.sh

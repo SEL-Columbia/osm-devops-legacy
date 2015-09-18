@@ -7,7 +7,7 @@ then
   cd /home/osm
   git clone https://github.com/SEL-Columbia/openstreetmap-website.git
   cd openstreetmap-website
-  git checkout gridmaps-bare
+  git checkout gridmaps
   # curl --location https://github.com/SEL-Columbia/openstreetmap-website/archive/master.tar.gz | tar xz
   # mv openstreetmap-website-master openstreetmap-website
 fi
