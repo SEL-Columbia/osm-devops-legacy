@@ -3,7 +3,7 @@
 
 # Install and setup apache + passenger to serve openstreetmap-website
 # First apache2
-sudo apt-get install -y apache2
+sudo apt-get install -y apache2 locate
 
 # Run apache as osm user
 sudo sed -i 's/www-data/osm/' /etc/apache2/envvars

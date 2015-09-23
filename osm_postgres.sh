@@ -14,10 +14,10 @@ done
 
 # Ensure that template1 (the default) has proper encoding (UTF8), collation and ctype
 # TODO:  Can this be done on initdb?  
-sudo -u postgres psql -c "update pg_database set encoding=6, datcollate='en_US.UTF-8', datctype='en_US.UTF-8' where datname='template1';"
+sudo -iu postgres psql -c "update pg_database set encoding=6, datcollate='en_US.UTF-8', datctype='en_US.UTF-8' where datname='template1';"
    
 # create osm user and set password as needed
-sudo -u postgres psql -c "CREATE ROLE osm SUPERUSER LOGIN PASSWORD 'osm';"
+sudo -iu postgres psql -c "CREATE ROLE osm SUPERUSER LOGIN PASSWORD 'osm';"
 
 # create prod, test and dev db's
 # sudo -u postgres psql -c "CREATE DATABASE osm OWNER osm ENCODING 'UTF8' LC_COLLATE 'en_US.UTF-8' LC_CTYPE='en_US.UTF-8' TEMPLATE template0;"

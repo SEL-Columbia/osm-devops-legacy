@@ -116,6 +116,11 @@ Instructions:
 
     Then modify /etc/apache2/sites-available/osm.conf with appropriate ServerName value
 
+    Note:  If you're setting this up in a development Docker container and want to listen for requests from the host on port 8001, you need to add the following to /etc/apache2/apache2.conf:
+    ```
+    Listen 0.0.0.0:8001
+    ```
+
 7.  For setting up cgimap (for faster map api calls):
 
     ```
