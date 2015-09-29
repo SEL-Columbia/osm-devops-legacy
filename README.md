@@ -130,3 +130,25 @@ Instructions:
     You will then need to configure lighttpd, etc  
     See the following github repo for more:
     https://github.com/zerebubuth/openstreetmap-cgimap
+
+### Development workflow
+
+Development for the openstreetmap-website fork should be done in the SEL-Columbia/openstreetmap-website repository.  
+
+Branch organization:
+- master:  should be synchronized with upstream openstreetmap/openstreetmap-website regularly (fork changes are not applied here)
+- gridmaps:  "production" SEL openstreetmap-website fork.  This should be deployable at all times.  Nothing untested should make it in here.
+- gridmaps-<branch>:  Any changes to fork code to be merged in a pull-request to gridmaps
+
+Once a branch has been tested in a dev environment, it can be merged into the gridmaps branch.  
+From there it can be deployed to a previously configured environment via:
+
+```
+ssh osm@<host> bash -s < redeploy_production.sh
+```
+
+Deploying an alternative branch to an environment can be done via:
+
+```
+cat redeploy_production.sh | ssh osm@<host> bash -s -- gridmaps-<branch>
+```
