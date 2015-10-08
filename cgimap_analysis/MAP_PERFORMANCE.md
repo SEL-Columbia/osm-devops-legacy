@@ -13,3 +13,5 @@ The following graph compares the performance of the rails implementation to cgim
 ![](https://github.com/SEL-Columbia/osm-devops/blob/master/cgimap_analysis/comparison.png)
 
 See the [all_results.csv file](https://github.com/SEL-Columbia/osm-devops/blob/master/cgimap_analysis/all_results.csv) for the data behind the graph.
+
+Areas computed via [this R script](https://github.com/chrisnatali/spatial_utils/blob/master/area_for_bboxes.R)
