@@ -1,8 +1,6 @@
 ### Map API 
 
-The openstreetmap 0.6 api the [map request](http://wiki.openstreetmap.org/wiki/API_v0.6#Retrieving_map_data_by_bounding_box:_GET_.2Fapi.2F0.6.2Fmap) allows users to retrieve all osm data within a bounding box. 
-
-The performance of this often called request is important.  
+The openstreetmap 0.6 api [map request](http://wiki.openstreetmap.org/wiki/API_v0.6#Retrieving_map_data_by_bounding_box:_GET_.2Fapi.2F0.6.2Fmap) allows users to retrieve all osm data within a bounding box.  This request is made by openstreetmap clients and its performance is important for a responsive system.
 
 The ruby based implementation included in the [openstreetmap-website](github.com/openstreetmap/openstreetmap-website) source performs poorly in terms of runtime and memory.  Frequent/large requests handled by the ruby implementation will bring an osm server down.  
 
@@ -14,4 +12,4 @@ The following graph compares the performance of the rails implementation to cgim
 
 ![](https://github.com/SEL-Columbia/osm-devops/blob/master/cgimap_analysis/comparison.png)
 
-See csv files in cgimap_comparison folder in this repository for supporting data.  
+See the [all_results.csv file](https://github.com/SEL-Columbia/osm-devops/blob/master/cgimap_analysis/all_results.csv) for the data behind the graph.
