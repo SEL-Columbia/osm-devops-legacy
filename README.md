@@ -141,14 +141,30 @@ Branch organization:
 - gridmaps-<branch>:  Any changes to fork code to be merged in a pull-request to gridmaps
 
 Once a branch has been tested in a dev environment, it can be merged into the gridmaps branch.  
-From there it can be deployed to a previously configured environment via:
+From there it can be deployed to a previously configured environment.
+
+#### Production Deployment
+
+Currently, deployment involves running bash scripts on an Ubuntu server (keeping DevOps simple, flexible and generic...though somewhat fragmented).  
+
+Building and deploying cgimap for production:
 
 ```
-ssh osm@<host> bash -s < redeploy_production.sh
+ssh osm@<host> bash -s < osm_cgimap_build.sh
+
+ssh root@<host> OSM_DB_PASSWORD=osm CGIMAP_PORT=31337 SERVER_NAME=<host> SERVER_PORT=80 bash -s < osm_cgimap_deploy_apache.sh
+```
+
+Deploying to existing production environment (assumes everything has been setup)
+
+```
+ssh osm@<host> bash -s < deploy_production.sh
 ```
 
 Deploying an alternative branch to an environment can be done via:
 
 ```
-cat redeploy_production.sh | ssh osm@<host> bash -s -- gridmaps-<branch>
+cat deploy_production.sh | ssh osm@<host> bash -s -- gridmaps-<branch>
 ```
+
+
