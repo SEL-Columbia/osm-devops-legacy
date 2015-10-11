@@ -10,8 +10,6 @@ then
     exit 1
 fi
 
-echo $OSM_DB_PASSWORD $CGIMAP_PORT $SERVER_NAME
-
 # Setup cgimap as service
 # NOTE:  Tried using zerebebuth's method and upstart to no avail...fell back to this
 # based on https://github.com/fhd/init-script-template
@@ -46,12 +44,12 @@ get_pid() {
 }
 
 is_running() { 
-    [ -f "\$CGIMAP_PIDFILE" ] && ps $( get_pid ) > /dev/null 2>&1
+    [ -f "\$CGIMAP_PIDFILE" ] && ps \$( get_pid ) > /dev/null 2>&1
 }
 
 case "\$1" in
     start)
-    if [ -f "\$CGIMAP_PIDFILE" ]; then
+    if is_running; then
         echo "Already started"
     else
         echo "Starting \$name"
@@ -115,8 +113,7 @@ exit 0
 EOF
 
 chmod 755 /etc/init.d/cgimap
-service cgimap enable
-service cgimap start
+service cgimap restart
 
 # Setup apache to forward 'map' requests to running cgimap service
 # # install required apache modules for fcgi 
@@ -146,6 +143,6 @@ cat - > /etc/apache2/sites-available/osm.conf << EOF
 </VirtualHost>
 EOF
 
-# enable cgimap and restart
-a2ensite cgimap
+# enable osm site (if not already) and restart
+a2ensite osm 
 service apache2 restart
