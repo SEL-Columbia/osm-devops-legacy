@@ -135,10 +135,27 @@ Instructions:
 
 Development for the openstreetmap-website fork should be done in the SEL-Columbia/openstreetmap-website repository.  
 
-Branch organization:
+#### Branch organization:
 - master:  should be synchronized with upstream openstreetmap/openstreetmap-website regularly (fork changes are not applied here)
 - gridmaps:  "production" SEL openstreetmap-website fork.  This should be deployable at all times.  Nothing untested should make it in here.
 - gridmaps-<branch>:  Any changes to fork code to be merged in a pull-request to gridmaps
+
+#### Testing
+
+Testing can be done via Docker by bringing up a preconfigured container, pointing it to the git branch directory on the host and running the tests.  
+The following command assumes a preconfigured image named:tagged osm-website:stage.
+
+```
+docker run -ti --rm -u osm -v "<your_host_osm_website_dir>:/osm-src" --name osm-test osm-website:stage /bin/bash
+```
+
+Then, from the console in that container run the tests.
+
+```
+sudo service postgresql start
+cd /osm-src
+rake test
+```
 
 Once a branch has been tested in a dev environment, it can be merged into the gridmaps branch.  
 From there it can be deployed to a previously configured environment.
