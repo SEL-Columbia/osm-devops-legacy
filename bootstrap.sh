@@ -21,6 +21,7 @@ apt-get update && apt-get -y install \
   apache2-threaded-dev \
   build-essential \
   git-core \
+  imagemagick \
   libmagickwand-dev \
   libpq-dev \
   libruby \
