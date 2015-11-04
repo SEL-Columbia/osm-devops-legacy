@@ -10,9 +10,14 @@ gem install --user-install nokogiri
 
 # create sync data dir
 mkdir sync_load
+crontab osm-utils/sync_tile_db.crt
 
-# TODO:  
-# - Update osm-utils/sync_load_cfg.rb to point to api server
-# - add cronjob to update tile db:
-#   crontab -u tiles osm-utils/sync_tile_db.crt
+# create empty tables via osm2pgsql
+sudo service postgresql start
+while ! psql -d osm_grid -c '\d' > /dev/null;
+do
+  echo "waiting for postgres..."
+  sleep 1
+done
 
+osm2pgsql --database osm_grid -c --style gridmaps.style --slim empty.osm --hstore-all --extra-attributes

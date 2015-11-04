@@ -19,6 +19,8 @@ RUN bash /tmp/postgis_setup.sh
 
 ADD osmutils_sync_setup.sh /tmp/
 USER tiles 
+ADD gridmaps.style /home/tiles/gridmaps.style
+ADD empty.osm /home/tiles/empty.osm
 RUN bash /tmp/osmutils_sync_setup.sh
 
 USER root 
@@ -28,4 +30,5 @@ RUN bash /tmp/tilemill.sh
 
 USER root
 ADD run.sh /tmp/
-CMD /tmp/run.sh
+ADD run_tilemill.sh /tmp/
+CMD /tmp/run.sh && /tmp/run_tilemill.sh

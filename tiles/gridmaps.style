@@ -1,0 +1,34 @@
+# Style file for power data import into postgis via osm2pgsql
+
+# OsmType  Tag          DataType     Flags
+node,way   note         text         delete   # These tags can be long but are useless for rendering
+#node,way   source       text         delete   # This indicates that we shouldn't store them
+node,way   created_by   text         delete
+
+# general purpose attributes
+node,way   name         text  linear
+node,way   place        text         polygon
+node       poi          text
+node,way   population   text         linear
+node,way   z_order      int4         linear # This is calculated during import
+way        way_area     real                # This is calculated during import
+
+# power related attributes
+node,way  power  text  linear
+node,way  generator:source  text  linear
+node,way  generator:capacity  text  linear
+node,way  rating  text  linear # not consistent with osm community (should be generator:output)
+node,way  generator:output  text  linear
+node,way  generator:type  text  linear
+node,way  todo  text  linear
+node,way  notes  text  linear
+node,way  voltage  text  linear
+node,way  voltage-high  text  linear
+node,way  voltage-low  text  linear
+
+# The following entries can be used with the --extra-attributes option
+# to include the username, userid, version & timstamp in the DB
+node,way  osm_user       text
+node,way  osm_uid        text
+node,way  osm_version    text
+node,way  osm_timestamp  text
