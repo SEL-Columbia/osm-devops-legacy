@@ -11,9 +11,7 @@ RUN apt-get update && apt-get -y install \
   libpq-dev \
   libsasl2-dev \
   libxml2-dev \
-  libxslt1-dev \
-  openjdk-7-jre \
-  osmosis
+  libxslt1-dev
 
 RUN apt-get -y install postgresql-server-dev-all
 

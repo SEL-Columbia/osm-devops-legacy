@@ -1,0 +1,26 @@
+gridmaps:
+    image: "selcolumbia/osm-gridmaps"
+    links:
+      - "db:db"
+    volumes:
+      - ./database.yml:/home/app/openstreetmap-website/config/database.yml
+      - ./application.yml:/home/app/openstreetmap-website/config/application.yml
+      - ./gridmaps-nginx.conf:/etc/nginx/sites-enabled/gridmaps-nginx.conf
+
+db:
+    image: "selcolumbia/osm-db"
+
+dev:
+    image: "selcolumbia/osm-gridmaps"
+    volumes:
+      - ~/src/openstreetmap-website/:/openstreetmap-website
+    links:
+      - "db:db"
+
+test:
+    image: "selcolumbia/osm-gridmaps"
+    links:
+      - "db:db"
+    volumes:
+      - database.yml:/home/app/openstreetmap-website/config/database.yml
+      - application.yml:/home/app/openstreetmap-website/config/application.yml
