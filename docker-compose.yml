@@ -7,6 +7,16 @@ gridmaps:
       - ./application.yml:/home/app/openstreetmap-website/config/application.yml
       - ./gridmaps-nginx.conf:/etc/nginx/sites-enabled/gridmaps-nginx.conf
 
+gridmaps-cgimap:
+    image: "selcolumbia/osm-gridmaps-cgimap"
+    links:
+      - "db:db"
+    volumes:
+      - ./database.yml:/home/app/openstreetmap-website/config/database.yml
+      - ./application.yml:/home/app/openstreetmap-website/config/application.yml
+      - ./gridmaps-nginx-cgimap.conf:/etc/nginx/sites-enabled/gridmaps-nginx-cgimap.conf
+      - ./server-cgimap/cgimap_run.sh:/etc/service/cgimap/run
+
 db:
     image: "selcolumbia/osm-db"
 
