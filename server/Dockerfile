@@ -1,4 +1,4 @@
-# Docker image for openstreetmap-website db
+# Docker "osm-gridmaps" image for openstreetmap-website server
 FROM phusion/passenger-ruby20
 MAINTAINER Chris Natali
 
