@@ -15,7 +15,8 @@ gridmaps-cgimap:
       - ./database.yml:/home/app/openstreetmap-website/config/database.yml
       - ./application.yml:/home/app/openstreetmap-website/config/application.yml
       - ./gridmaps-nginx-cgimap.conf:/etc/nginx/sites-enabled/gridmaps-nginx-cgimap.conf
-      - ./server-cgimap/cgimap_run.sh:/etc/service/cgimap/run
+    ports:
+      - "80:80"
 
 db:
     image: "selcolumbia/osm-db"
