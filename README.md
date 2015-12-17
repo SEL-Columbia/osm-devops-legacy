@@ -1,3 +1,5 @@
+### Deprecated:  May be useful for scripts demonstrating how this was setup via apache without Docker.  For current devops see [new osm-devops repo](https://github.com/SEL-Columbia/osm-devops)
+
 Dockerfile and scripts associated with 
 [SEL Fork of OSM Rails Port](https://github.com/SEL-Columbia/openstreetmap-website) 
 deployment on an Ubuntu 14.04 server.  These are intended to be used for 
